@@ -51,12 +51,10 @@ function App() {
           />
           <button
             className='outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0  rounded-r'
-            onClick={copyPasswordToClipboard}
-          >
+            onClick={copyPasswordToClipboard}>
             Copy
           </button>
         </div>
-        {/*  */}
         <div className='flex text-sm gap-x-2 mt-4'>
           <div className='flex item-center gap-x-1'>
             <input
