@@ -13,10 +13,10 @@ function App() {
       setCounter(counter + 1);
       // setCounter(counter + 1); // it does not again increase valuse as per Fiber, it show as same work and does not repeat it.
 
-      // setCounter((prevcounter) => prevcounter + 1); // prevcounter is a hidden functionality of useState that shows previous value and thats why it increase.
-      // setCounter((prevcounter) => prevcounter + 1);
-      // setCounter((prevcounter) => prevcounter + 1);
-      // setCounter(counter + 1); // prevcounter is counter, does not chang any other value using it, but write name both are same just for understanding
+      // setCounter((prevcounter) => prevcounter + 1); +1 // prevcounter is a hidden functionality of useState that shows previous value and thats why it increase.
+      // setCounter((prevcounter) => prevcounter + 1);+1
+      // setCounter((prevcounter) => prevcounter + 1);+1
+      // setCounter(counter + 1); +1  so total +4 // prevcounter is counter, does not chang any other value using it, but write name both are same just for understanding
     }
     console.log("Clicked", counter);
   };

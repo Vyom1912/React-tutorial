@@ -6,7 +6,7 @@ function App() {
     <>
       <h1>hello world | vyom | Vite</h1>
       <p>My name is {nameis} </p>
-      <Chai />
+      <Chai name='hello from props' />
     </>
   );
 }
