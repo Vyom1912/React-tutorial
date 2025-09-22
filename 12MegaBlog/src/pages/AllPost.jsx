@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Container, PostCard } from "../components";
 import appwriteService from "../appwrite/config";
-import { PostCard, Container } from "../components";
-function AllPost() {
+
+function AllPosts() {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
-    appwriteService.getPosts([]).then((posts) => {
-      if (posts) setPosts(posts.documents);
+    // Fetch posts inside useEffect to run only once
+    appwriteService.getPosts().then((res) => {
+      if (res) {
+        setPosts(res.documents); // Appwrite response has `documents` array
+      }
     });
   }, []);
   return (
@@ -23,4 +27,4 @@ function AllPost() {
   );
 }
 
-export default AllPost;
+export default AllPosts;

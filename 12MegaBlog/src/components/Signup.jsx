@@ -1,19 +1,18 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import authService from "../appwrite/auth";
+import { Link, useNavigate } from "react-router-dom";
 import { login } from "../store/authSlice";
-import { Button, Input, Logo } from "./index";
+import { Button, Input, Logo } from "./index.js";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 
 function Signup() {
   const navigate = useNavigate();
+  const [error, setError] = useState("");
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
-  const [error, setError] = useState("");
-  // const [loading, setLoading] = useState(false);
 
-  const signup = async (data) => {
+  const create = async (data) => {
     setError("");
     try {
       const userData = await authService.createAccount(data);
@@ -23,7 +22,7 @@ function Signup() {
         navigate("/");
       }
     } catch (error) {
-      setError(error.message || "Something went wrong");
+      setError(error.message);
     }
   };
 
@@ -35,7 +34,7 @@ function Signup() {
           <span className='inline-block w-full max-w-[100px]'>
             <Logo width='100%' />
           </span>
-        </div>{" "}
+        </div>
         <h2 className='text-center text-2xl font-bold leading-tight'>
           Sign up to create account
         </h2>
@@ -48,15 +47,16 @@ function Signup() {
           </Link>
         </p>
         {error && <p className='text-red-600 mt-8 text-center'>{error}</p>}
-        <form onSubmit={handleSubmit(signup)} className='mt-8'>
+
+        <form onSubmit={handleSubmit(create)}>
           <div className='space-y-5'>
             <Input
-              label='Full Name'
-              placeholder='Enter your Name'
+              label='Full Name: '
+              placeholder='Enter your full name'
               {...register("name", {
                 required: true,
               })}
-            />{" "}
+            />
             <Input
               label='Email: '
               placeholder='Enter your email'
@@ -78,7 +78,10 @@ function Signup() {
                 required: true,
               })}
             />
-            <Button type='submit' className='w-full'>
+            <Button
+              type='submit'
+              className='w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 disabled:opacity-50 cursor-pointer'>
+              {" "}
               Create Account
             </Button>
           </div>
